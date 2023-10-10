@@ -28,9 +28,10 @@ def settings():
         device_id = request.json['device_id']
         vibration_strength = request.json['vibration_strength']
         flex_sensitivity = request.json['flex_sensitivity']
+        vibration_duration = request.json['vibration_duration']
         cursor.execute(
-            "INSERT INTO device_settings(device_id, vibration_strength, flex_sensitivity) VALUES (%s, %s, %s)",
-            (device_id, vibration_strength, flex_sensitivity))
+            "INSERT INTO device_settings(device_id, vibration_strength, flex_sensitivity, vibration_duration) VALUES (%s, %s, %s, %s)",
+            (device_id, vibration_strength, flex_sensitivity, vibration_duration))
         mysql.connection.commit()
         cursor.close()
         return 'success'
@@ -49,9 +50,10 @@ def settings():
         device_id = request.json['device_id']
         vibration_strength = request.json['vibration_strength']
         sensor_sensitivity = request.json['sensor_sensitivity']
+        vibration_duration = request.json['vibration_duration']
         cursor.execute(
-            "UPDATE device_settings SET vibration_strength = %s, sensor_sensitivity = %s WHERE device_id = %s",
-            (vibration_strength, sensor_sensitivity, device_id))
+            "UPDATE device_settings SET vibration_strength = %s, sensor_sensitivity = %s, vibration_duration = %s WHERE device_id = %s",
+            (vibration_strength, sensor_sensitivity, vibration_duration, device_id))
         mysql.connection.commit()
         cursor.close()
         return 'success'
