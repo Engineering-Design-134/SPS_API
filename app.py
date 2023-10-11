@@ -43,7 +43,7 @@ def settings():
             (device_id,))
         device_settings = cursor.fetchone()
         cursor.close()
-        json = '{"device_id": "%s", "vibration_strength": "%s", "flex_sensitivity": "%s"}'
+        json = '{"device_id": "%s", "vibration_strength": "%s", "flex_sensitivity": "%s", "vibration_duration": "%s"}'
         return json % device_settings
 
     if request.method == 'PATCH':
