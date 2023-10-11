@@ -52,7 +52,7 @@ def settings():
         flex_sensitivity = request.json['flex_sensitivity']
         vibration_duration = request.json['vibration_duration']
         cursor.execute(
-            "UPDATE device_settings SET vibration_strength = %s, sensor_sensitivity = %s, vibration_duration = %s WHERE device_id = %s",
+            "UPDATE device_settings SET vibration_strength = %s, flex_sensitivity = %s, vibration_duration = %s WHERE device_id = %s",
             (vibration_strength, flex_sensitivity, vibration_duration, device_id))
         mysql.connection.commit()
         cursor.close()
