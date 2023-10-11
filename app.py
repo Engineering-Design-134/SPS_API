@@ -49,11 +49,11 @@ def settings():
     if request.method == 'PATCH':
         device_id = request.json['device_id']
         vibration_strength = request.json['vibration_strength']
-        sensor_sensitivity = request.json['sensor_sensitivity']
+        flex_sensitivity = request.json['flex_sensitivity']
         vibration_duration = request.json['vibration_duration']
         cursor.execute(
             "UPDATE device_settings SET vibration_strength = %s, sensor_sensitivity = %s, vibration_duration = %s WHERE device_id = %s",
-            (vibration_strength, sensor_sensitivity, vibration_duration, device_id))
+            (vibration_strength, flex_sensitivity, vibration_duration, device_id))
         mysql.connection.commit()
         cursor.close()
         return 'success'
