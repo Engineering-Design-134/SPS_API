@@ -30,8 +30,8 @@ def settings():
         flex_sensitivity = request.json['flex_sensitivity']
         vibration_duration = request.json['vibration_duration']
         cursor.execute(
-            "INSERT INTO device_settings(device_id, vibration_strength, flex_sensitivity, vibration_duration) VALUES (%s, %s, %s, %s)",
-            (device_id, vibration_strength, flex_sensitivity, vibration_duration))
+            "INSERT INTO device_settings(device_id, vibration_strength, flex_sensitivity, vibration_duration, device_on) VALUES (%s, %s, %s, %s, %s)",
+            (device_id, vibration_strength, flex_sensitivity, vibration_duration, 0))
         mysql.connection.commit()
         cursor.close()
         return 'success'
@@ -43,7 +43,8 @@ def settings():
             (device_id,))
         device_settings = cursor.fetchone()
         cursor.close()
-        json = '{"device_id": "%s", "vibration_strength": "%s", "flex_sensitivity": "%s", "vibration_duration": "%s"}'
+        json = ('{"device_id": "%s", "vibration_strength": "%s", "flex_sensitivity": "%s", "vibration_duration": "%s", "device_on": "%s"}')
+        print(json % device_settings)
         return json % device_settings
 
     if request.method == 'PATCH':
