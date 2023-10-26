@@ -20,6 +20,17 @@ else:
 
 mysql = MySQL(app)
 
+@app.route('/device_on', methods=['PATCH'])
+def device_on():
+    cursor = mysql.connection.cursor()
+    device_id = request.json['device_id']
+    device_on = request.json['device_on']
+    cursor.execute(
+        "UPDATE device_settings SET device_on = %s WHERE device_id = %s",
+        (device_on, device_id))
+    mysql.connection.commit()
+    cursor.close()
+    return 'success'
 
 @app.route('/settings', methods=['GET', 'POST', "PATCH"])
 def settings():
